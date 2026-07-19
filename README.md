@@ -1,4 +1,5 @@
 <h3><b>🙋🏼‍♂️ THIS REPOSITORY CONTAINS COLLEGE REGULAR WORKS OF THE CLASSROOMS</b></h3>
+<hr>
 <h4>
 Student Name -- Arunesh Kumar Pandit
 <br>
