@@ -41,10 +41,10 @@ async function deleteFile() {
 }
 
 async function runDemo() {
-//   await createFile("This file is created form FileServer.js using JS codes !!! Hurrey ! \n");
+  await createFile("This file is created form FileServer.js using JS codes !!! Hurrey ! \n");
   await appendFile("Hey everyone I am your Boss !!! Hahahaha...\n");
   await readFile();
-//   await deleteFile();
+  // await deleteFile();
 }
 
 runDemo();
