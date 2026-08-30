@@ -1,20 +1,17 @@
 import http from "http";
-
-const server = http.createServer((req, res) => {
-    const url = req.url;
-    const method = req.method;
-
-    if (url === "/msg" && method === "GET") {
-        res.statusCode = 200;
-        res.setHeader("Content-Type", "text/plain");
-        res.end("Hello Server.");
-    } else {
-        res.statusCode = 404;
-        res.setHeader("Content-Type", "text/plain");
-        res.end("Page Not Found");
+const server=http.createServer((req,res)=>{
+    //   res.statusCode=201;
+    //   res.setHeader("Content-type","text/plane");
+    //   res.end("Hello Serever.")
+    const url=req.url;
+    const method=req.method;
+    if(url=="/msg" && method == "GET"){
+        res.end("This is welcome message from server");
     }
-});
-
-server.listen(3000, () => {
+    else if(url="/sys" && method == "GET"){
+        res.end("This is system information");
+    }
+})
+server.listen(3000,()=>{
     console.log("Server is running on port number 3000");
-});
+})
