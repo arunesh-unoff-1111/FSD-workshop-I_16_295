@@ -1,3 +1,4 @@
+// Have to peroform file handling opertions on JSON file 
 import fs from "node:fs/promises";
 const filePath = "userData.json";
 
