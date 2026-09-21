@@ -23,19 +23,26 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, { "Content-Type": "text/plain" });
     res.end("Welcme user / This is welcome message from server");
   } 
+  
   else if (url === "/sys" && method === "GET") {
     res.writeHead(200, { "Content-Type": "application/json" });
     res.end(JSON.stringify(sysdata));
   } 
+  
   else if (url === "/user" && method === "GET") {
     res.writeHead(200, { "Content-Type": "text/plain" });
     res.end("Welcome to user");
   } 
+  
   else if ((url === "/data" || url === "/users") && method === "GET") {
     res.writeHead(200, { "Content-Type": "application/json" });
     res.end(JSON.stringify(userdata));
   } 
-  else if ((url.startsWith("/users/") || url.startsWith("/user/")) && method === "GET") {
+  
+  else if (
+    (url.startsWith("/users/") || url.startsWith("/user/")) &&
+    method === "GET"
+  ) {
     const id = url.split("/")[2];
 
     const user = userdata.find((u) => u.id == id);
@@ -48,30 +55,47 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, { "Content-Type": "application/json" });
     res.end(JSON.stringify(user));
   } 
+  
   else if (url === "/data" && method === "PUT") {
     res.writeHead(200, { "Content-Type": "text/plain" });
     res.end("Data updated successfully");
   } 
+  
   else if (url.startsWith("/submit") && method === "GET") {
     const parsedUrl = new URL(url, `http://${req.headers.host}`);
+
     const id = Number(parsedUrl.searchParams.get("id"));
     const name = parsedUrl.searchParams.get("name");
     const email = parsedUrl.searchParams.get("email");
 
     if (id && name && email) {
-      const newUserData = { id, name, email };
+      const newUserData = {
+        id,
+        name,
+        email
+      };
+
       userdata.push(newUserData);
 
       res.writeHead(200, { "Content-Type": "application/json" });
-      res.end(JSON.stringify({
-        message: "Data added successfully via browser!",
-        currentData: userdata
-      }));
-    } else {
+
+      res.end(
+        JSON.stringify({
+          message: "Data added successfully via browser!",
+          currentData: userdata
+        })
+      );
+    } 
+    
+    else {
       res.writeHead(400, { "Content-Type": "text/plain" });
-      res.end("Please provide id, name, and email as query parameters (e.g., /submit?id=102&name=WXYZ&email=test@abes.ac.in)");
+
+      res.end(
+        "Please provide id, name, and email as query parameters (e.g., /submit?id=102&name=WXYZ&email=test@abes.ac.in)"
+      );
     }
   } 
+  
   else if (url === "/create" && method === "POST") {
     let body = "";
 
@@ -81,30 +105,32 @@ const server = http.createServer((req, res) => {
 
     req.on("end", () => {
       try {
-        const newData = JSON.parse(body);
+        const data = JSON.parse(body);
 
-        if (newData.id && newData.name && newData.email) {
-          userdata.push({
-            id: Number(newData.id),
-            name: newData.name,
-            email: newData.email
-          });
+        const newUser = {
+          id: data.id,
+          name: data.name,
+          email: data.email
+        };
 
-          res.writeHead(201, { "Content-Type": "application/json" });
-          res.end(JSON.stringify({
-            message: "Data inserted successfully",
-            currentData: userdata
-          }));
-        } else {
-          res.writeHead(400, { "Content-Type": "text/plain" });
-          res.end("Invalid body data. Must contain id, name, and email.");
-        }
+        userdata.push(newUser);
+
+        res.writeHead(201, {
+          "Content-Type": "text/plain"
+        });
+
+        res.end("User created successfully");
+
       } catch (err) {
-        res.writeHead(400, { "Content-Type": "text/plain" });
+        res.writeHead(400, {
+          "Content-Type": "text/plain"
+        });
+
         res.end("Invalid JSON format");
       }
     });
   } 
+  
   else {
     res.writeHead(404, { "Content-Type": "text/plain" });
     res.end("404 Not Found");
