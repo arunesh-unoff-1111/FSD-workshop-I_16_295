@@ -1,0 +1,454 @@
+/* =========================================================
+   LOGIN / SIGNUP PAGE
+   ========================================================= */
+
+.auth-container {
+  min-height: 100vh;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #f3f3f3;
+
+  box-sizing: border-box;
+}
+
+
+/* Main Login / Signup Card */
+
+.auth-box {
+  width: 100%;
+  max-width: 520px;
+
+  padding: 60px 45px;
+
+  background: white;
+
+  border-radius: 15px;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+
+  text-align: center;
+
+  box-sizing: border-box;
+}
+
+
+/* Heading */
+
+.auth-box h1 {
+  margin: 0 0 5px 0;
+
+  color: #222 !important;
+
+  font-size: 48px;
+  font-weight: 700;
+}
+
+
+/* Description */
+
+.auth-box > p {
+  margin: 0;
+
+  color: #555 !important;
+
+  font-size: 24px;
+}
+
+
+/* Form */
+
+.auth-box form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 23px;
+
+  margin-top: 40px;
+}
+
+
+/* Inputs */
+
+.auth-box input {
+  width: 100%;
+  height: 62px;
+
+  padding: 0 18px;
+
+  box-sizing: border-box;
+
+  background: #f7f7f7 !important;
+  color: #222 !important;
+
+  border: 1px solid #ccc !important;
+  border-radius: 8px;
+
+  font-size: 20px;
+
+  outline: none;
+}
+
+
+/* Placeholder */
+
+.auth-box input::placeholder {
+  color: #777 !important;
+
+  opacity: 1;
+}
+
+
+/* Input Focus */
+
+.auth-box input:focus {
+  border-color: #555 !important;
+
+  background: white !important;
+}
+
+
+/* Login / Create Account Button */
+
+.auth-box button[type="submit"] {
+  width: 100%;
+  height: 62px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #222 !important;
+  color: white !important;
+
+  font-size: 20px;
+
+  cursor: pointer;
+}
+
+.auth-box button[type="submit"]:hover {
+  background: #333 !important;
+}
+
+
+/* Bottom Text */
+
+.auth-box .switch-text {
+  margin-top: 32px;
+
+  color: #555 !important;
+
+  font-size: 20px;
+}
+
+
+/* Login / Signup Link */
+
+.auth-box .link-button {
+  background: none !important;
+
+  border: none !important;
+
+  color: #0066cc !important;
+
+  font-size: 20px;
+
+  cursor: pointer;
+
+  padding: 0;
+}
+
+.auth-box .link-button:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   DASHBOARD
+   ========================================================= */
+
+.dashboard-page {
+  min-height: 100vh;
+  width: 100%;
+
+  background: #000000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px 20px;
+
+  box-sizing: border-box;
+}
+
+
+/* Dashboard Card */
+
+.dashboard-card {
+  width: 100%;
+  max-width: 850px;
+
+  background: #1e1e1e;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  border-radius: 24px;
+
+  padding: 40px;
+
+  box-sizing: border-box;
+
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+
+/* Dashboard Header */
+
+.dashboard-header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 35px;
+}
+
+
+/* Dashboard Heading */
+
+.dashboard-header h1 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 32px;
+
+  font-weight: 600;
+}
+
+
+/* Dashboard Subtitle */
+
+.dashboard-header p {
+  margin: 8px 0 0;
+
+  color: #888888;
+
+  font-size: 14px;
+}
+
+
+/* Profile Circle */
+
+.profile-circle {
+  width: 52px;
+  height: 52px;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  color: #000000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 20px;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   USER DETAILS
+   ========================================================= */
+
+.details-container {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 16px;
+}
+
+
+/* Individual Detail Box */
+
+.detail-box {
+  background: rgba(255, 255, 255, 0.05);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 16px;
+
+  padding: 20px 22px;
+
+  transition: 0.2s ease;
+}
+
+
+/* Detail Box Hover */
+
+.detail-box:hover {
+  background: rgba(255, 255, 255, 0.08);
+
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+
+/* Detail Label */
+
+.detail-box span {
+  display: block;
+
+  color: #888888;
+
+  font-size: 13px;
+
+  margin-bottom: 8px;
+}
+
+
+/* Detail Value */
+
+.detail-box h2 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 17px;
+
+  font-weight: 500;
+
+  word-break: break-word;
+}
+
+
+/* =========================================================
+   LOGOUT BUTTON
+   ========================================================= */
+
+.logout-button {
+  width: 100%;
+
+  margin-top: 30px;
+
+  padding: 15px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  color: #000000;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+
+/* Logout Hover */
+
+.logout-button:hover {
+  background: #dddddd;
+}
+
+
+/* Logout Click */
+
+.logout-button:active {
+  transform: scale(0.99);
+}
+
+
+/* =========================================================
+   DASHBOARD MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  /* Login / Signup */
+
+  .auth-container {
+    padding: 20px;
+  }
+
+  .auth-box {
+    padding: 40px 25px;
+  }
+
+  .auth-box h1 {
+    font-size: 36px;
+  }
+
+  .auth-box > p {
+    font-size: 19px;
+  }
+
+  .auth-box input,
+  .auth-box button[type="submit"] {
+    height: 55px;
+
+    font-size: 17px;
+  }
+
+  .auth-box .switch-text {
+    font-size: 17px;
+  }
+
+  .auth-box .link-button {
+    font-size: 17px;
+  }
+
+
+  /* Dashboard */
+
+  .dashboard-page {
+    padding: 20px 15px;
+  }
+
+  .dashboard-card {
+    padding: 25px 20px;
+
+    border-radius: 20px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 25px;
+  }
+
+  .dashboard-header {
+    margin-bottom: 25px;
+  }
+
+  .profile-circle {
+    width: 45px;
+    height: 45px;
+
+    font-size: 17px;
+  }
+
+  .detail-box {
+    padding: 17px;
+  }
+
+  .detail-box h2 {
+    font-size: 15px;
+  }
+
+  .logout-button {
+    padding: 14px;
+  }
+}
