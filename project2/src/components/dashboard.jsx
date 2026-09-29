@@ -7,34 +7,33 @@ function Dashboard() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const savedUser = localStorage.getItem("user");
+    const savedUser = sessionStorage.getItem("loggedInUser");
 
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
+    if (!savedUser) {
+      navigate("/login");
+      return;
     }
-  }, []);
+
+    setUser(JSON.parse(savedUser));
+  }, [navigate]);
 
   const handleLogout = () => {
-    localStorage.removeItem("loggedIn");
+    sessionStorage.removeItem("loggedInUser");
 
     navigate("/login");
   };
 
   if (!user) {
-    return (
-      <div className="dashboard-page">
-        <div className="dashboard-card">
-          <h1>No user found</h1>
-        </div>
-      </div>
-    );
+    return null;
   }
 
   return (
     <div className="dashboard-page">
+
       <div className="dashboard-card">
 
         <div className="dashboard-header">
+
           <div>
             <h1>Your Details</h1>
             <p>Account information</p>
@@ -43,7 +42,9 @@ function Dashboard() {
           <div className="profile-circle">
             {user.username.charAt(0).toUpperCase()}
           </div>
+
         </div>
+
 
         <div className="details-container">
 
@@ -52,10 +53,12 @@ function Dashboard() {
             <h2>{user.username}</h2>
           </div>
 
+
           <div className="detail-box">
             <span>Email ID</span>
             <h2>{user.email}</h2>
           </div>
+
 
           <div className="detail-box">
             <span>Password</span>
@@ -66,6 +69,7 @@ function Dashboard() {
 
         </div>
 
+
         <button
           className="logout-button"
           onClick={handleLogout}
@@ -74,6 +78,7 @@ function Dashboard() {
         </button>
 
       </div>
+
     </div>
   );
 }

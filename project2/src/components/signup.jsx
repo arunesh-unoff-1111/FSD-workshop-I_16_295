@@ -1,92 +1,250 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  useNavigate
+} from "react-router-dom";
 
 function Signup() {
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [formData, setFormData] = useState({
+    username: "",
+    email: location.state?.email || "",
+    password: "",
+    confirmPassword: ""
+  });
 
-  const handleSignup = (e) => {
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  // ------------------------------------
+  // Handle input
+  // ------------------------------------
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+
+    setError("");
+  };
+
+  // ------------------------------------
+  // Signup
+  // ------------------------------------
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!username || !email || !password || !confirmPassword) {
-      alert("Please fill all the fields.");
+    setError("");
+    setSuccess("");
+
+    if (
+      !formData.username ||
+      !formData.email ||
+      !formData.password ||
+      !formData.confirmPassword
+    ) {
+      setError("Please fill in all fields.");
       return;
     }
 
-    if (password !== confirmPassword) {
-      alert("Passwords do not match.");
+    if (formData.password.length < 6) {
+      setError(
+        "Password must contain at least 6 characters."
+      );
       return;
     }
 
-    const user = {
-      username,
-      email,
-      password,
-    };
+    if (
+      formData.password !==
+      formData.confirmPassword
+    ) {
+      setError("Passwords do not match.");
+      return;
+    }
 
-    localStorage.setItem("user", JSON.stringify(user));
+    try {
+      setLoading(true);
 
-    alert("Account created successfully!");
+      const response = await fetch(
+        "http://localhost:5000/api/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            username: formData.username,
+            email: formData.email,
+            password: formData.password
+          })
+        }
+      );
 
-    navigate("/login");
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(
+          data.message || "Unable to create account."
+        );
+
+        return;
+      }
+
+      setSuccess(
+        "Account created successfully! Redirecting to login..."
+      );
+
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
+
+    } catch (error) {
+      console.error(error);
+
+      setError(
+        "Unable to connect to the server. Make sure the backend is running."
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-box">
-        <h1>Create Account</h1>
+    <div className="auth-page">
 
-        <p>Sign up to continue</p>
+      <div className="auth-card">
 
-        <form onSubmit={handleSignup}>
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+        <div className="auth-logo">
+          <div className="logo-icon">
+            ◇
+          </div>
 
-          <input
-            type="email"
-            placeholder="Email ID"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <span>MyApp</span>
+        </div>
 
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+        <div className="auth-heading">
 
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
+          <p className="eyebrow">
+            GET STARTED
+          </p>
 
-          <button type="submit">
+          <h1>
             Create Account
-          </button>
-        </form>
+          </h1>
 
-        <p className="switch-text">
-          Already have an account?{" "}
+          <p>
+            Create your account to get started.
+          </p>
+
+        </div>
+
+        {error && (
+          <div className="error-message">
+            {error}
+          </div>
+        )}
+
+        {success && (
+          <div className="success-message">
+            {success}
+          </div>
+        )}
+
+        <form
+          className="auth-form"
+          onSubmit={handleSubmit}
+        >
+
+          <div className="input-group">
+            <label htmlFor="username">
+              Username
+            </label>
+
+            <input
+              id="username"
+              type="text"
+              name="username"
+              placeholder="Enter your username"
+              value={formData.username}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="input-group">
+            <label htmlFor="email">
+              Email
+            </label>
+
+            <input
+              id="email"
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="input-group">
+            <label htmlFor="password">
+              Password
+            </label>
+
+            <input
+              id="password"
+              type="password"
+              name="password"
+              placeholder="Create a password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="input-group">
+            <label htmlFor="confirmPassword">
+              Confirm Password
+            </label>
+
+            <input
+              id="confirmPassword"
+              type="password"
+              name="confirmPassword"
+              placeholder="Confirm your password"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+            />
+          </div>
 
           <button
-            className="link-button"
-            onClick={() => navigate("/login")}
+            type="submit"
+            className="primary-button"
+            disabled={loading}
           >
-            Login
+            {loading
+              ? "Creating account..."
+              : "Create Account"}
           </button>
-        </p>
+
+        </form>
+
+        <div className="auth-footer">
+
+          <span>
+            Already have an account?
+          </span>
+
+          <Link to="/login">
+            Login
+          </Link>
+
+        </div>
+
       </div>
+
     </div>
   );
 }

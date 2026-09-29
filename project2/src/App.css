@@ -1,263 +1,1266 @@
-/* =========================================================
-   LOGIN / SIGNUP PAGE
-   ========================================================= */
+/* =========================================
+   GLOBAL
+========================================= */
 
-.auth-container {
-  min-height: 100vh;
-  width: 100%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background: #f3f3f3;
-
+* {
   box-sizing: border-box;
 }
 
-
-/* Main Login / Signup Card */
-
-.auth-box {
-  width: 100%;
-  max-width: 520px;
-
-  padding: 60px 45px;
-
-  background: white;
-
-  border-radius: 15px;
-
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-
-  text-align: center;
-
-  box-sizing: border-box;
-}
-
-
-/* Heading */
-
-.auth-box h1 {
-  margin: 0 0 5px 0;
-
-  color: #222 !important;
-
-  font-size: 48px;
-  font-weight: 700;
-}
-
-
-/* Description */
-
-.auth-box > p {
+body {
   margin: 0;
+  font-family:
+    Inter,
+    Arial,
+    Helvetica,
+    sans-serif;
 
-  color: #555 !important;
+  background: #080808;
+  color: #ffffff;
+}
 
-  font-size: 24px;
+button,
+input {
+  font-family: inherit;
+}
+
+a {
+  text-decoration: none;
 }
 
 
-/* Form */
+/* =========================================
+   AUTH PAGES
+========================================= */
 
-.auth-box form {
-  display: flex;
-  flex-direction: column;
-
-  gap: 23px;
-
-  margin-top: 40px;
-}
-
-
-/* Inputs */
-
-.auth-box input {
-  width: 100%;
-  height: 62px;
-
-  padding: 0 18px;
-
-  box-sizing: border-box;
-
-  background: #f7f7f7 !important;
-  color: #222 !important;
-
-  border: 1px solid #ccc !important;
-  border-radius: 8px;
-
-  font-size: 20px;
-
-  outline: none;
-}
-
-
-/* Placeholder */
-
-.auth-box input::placeholder {
-  color: #777 !important;
-
-  opacity: 1;
-}
-
-
-/* Input Focus */
-
-.auth-box input:focus {
-  border-color: #555 !important;
-
-  background: white !important;
-}
-
-
-/* Login / Create Account Button */
-
-.auth-box button[type="submit"] {
-  width: 100%;
-  height: 62px;
-
-  border: none;
-  border-radius: 8px;
-
-  background: #222 !important;
-  color: white !important;
-
-  font-size: 20px;
-
-  cursor: pointer;
-}
-
-.auth-box button[type="submit"]:hover {
-  background: #333 !important;
-}
-
-
-/* Bottom Text */
-
-.auth-box .switch-text {
-  margin-top: 32px;
-
-  color: #555 !important;
-
-  font-size: 20px;
-}
-
-
-/* Login / Signup Link */
-
-.auth-box .link-button {
-  background: none !important;
-
-  border: none !important;
-
-  color: #0066cc !important;
-
-  font-size: 20px;
-
-  cursor: pointer;
-
-  padding: 0;
-}
-
-.auth-box .link-button:hover {
-  text-decoration: underline;
-}
-
-
-/* =========================================================
-   DASHBOARD
-   ========================================================= */
-
-.dashboard-page {
+.auth-page {
   min-height: 100vh;
-  width: 100%;
-
-  background: #000000;
 
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 
-  padding: 40px 20px;
+  padding: 30px;
 
-  box-sizing: border-box;
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(255, 255, 255, 0.05),
+      transparent 35%
+    ),
+    #080808;
 }
 
-
-/* Dashboard Card */
-
-.dashboard-card {
+.auth-card {
   width: 100%;
-  max-width: 850px;
+  max-width: 470px;
 
-  background: #1e1e1e;
+  padding: 45px;
 
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid #292929;
 
   border-radius: 24px;
 
-  padding: 40px;
-
-  box-sizing: border-box;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.055),
+      rgba(255, 255, 255, 0.015)
+    );
 
   box-shadow:
-    0 25px 80px rgba(0, 0, 0, 0.7),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    0 30px 100px rgba(0, 0, 0, 0.5);
+}
+
+.auth-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  font-size: 25px;
+  font-weight: 700;
+
+  margin-bottom: 50px;
+}
+
+.logo-icon {
+  width: 35px;
+  height: 35px;
+
+  border: 2px solid white;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+}
+
+.auth-heading {
+  margin-bottom: 30px;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+
+  font-size: 12px;
+  letter-spacing: 5px;
+
+  color: #aaa;
+}
+
+.auth-heading h1 {
+  margin: 0 0 10px;
+
+  font-family: Georgia, serif;
+
+  font-size: 48px;
+  font-weight: 400;
+}
+
+.auth-heading p:last-child {
+  margin: 0;
+
+  color: #8e8e8e;
+  line-height: 1.6;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.input-group label {
+  font-size: 14px;
+  color: #aaa;
+}
+
+.input-group input {
+  width: 100%;
+
+  padding: 15px 16px;
+
+  border: 1px solid #333;
+  border-radius: 10px;
+
+  outline: none;
+
+  color: white;
+  background: #111;
+
+  transition: 0.2s;
+}
+
+.input-group input:focus {
+  border-color: #777;
+
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.04);
+}
+
+.input-group input::placeholder {
+  color: #555;
+}
+
+.primary-button {
+  border: none;
+  border-radius: 10px;
+
+  padding: 15px;
+
+  background: white;
+  color: black;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.primary-button:hover {
+  background: #ddd;
+}
+
+.primary-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.auth-footer {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+
+  margin-top: 28px;
+
+  font-size: 14px;
+  color: #777;
+}
+
+.auth-footer a {
+  color: white;
+  font-weight: 600;
+}
+
+.error-message,
+.success-message {
+  padding: 12px 14px;
+
+  margin-bottom: 20px;
+
+  border-radius: 9px;
+
+  font-size: 13px;
+}
+
+.error-message {
+  color: #ffb4b4;
+  background: rgba(255, 50, 50, 0.08);
+  border: 1px solid rgba(255, 80, 80, 0.2);
+}
+
+.success-message {
+  color: #b7ffcc;
+  background: rgba(50, 255, 120, 0.08);
+  border: 1px solid rgba(50, 255, 120, 0.2);
 }
 
 
-/* Dashboard Header */
+/* =========================================
+   DASHBOARD
+========================================= */
 
-.dashboard-header {
+.dashboard-page {
+  min-height: 100vh;
+
+  position: relative;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(255, 255, 255, 0.025),
+      transparent 38%
+    ),
+    #080808;
+}
+
+
+/* =========================================
+   NAVBAR
+========================================= */
+
+.navbar {
+  height: 89px;
+
+  padding: 0 5%;
+
   display: flex;
-
   align-items: center;
   justify-content: space-between;
+
+  border-bottom: 1px solid #292929;
+
+  position: relative;
+  z-index: 5;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  color: white;
+
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.brand-icon {
+  width: 42px;
+  height: 42px;
+
+  position: relative;
+}
+
+.brand-icon span {
+  position: absolute;
+
+  width: 15px;
+  height: 30px;
+
+  border: 2px solid white;
+
+  border-radius: 100% 0 100% 0;
+
+  transform: rotate(-35deg);
+}
+
+.brand-icon span:first-child {
+  left: 7px;
+  top: 8px;
+}
+
+.brand-icon span:last-child {
+  left: 19px;
+  top: 3px;
+
+  transform: rotate(20deg);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 44px;
+
+  height: 100%;
+}
+
+.nav-links a {
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+
+  color: #dedede;
+
+  font-size: 16px;
+
+  position: relative;
+}
+
+.nav-links a:hover {
+  color: white;
+}
+
+.nav-links a.active::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 2px;
+
+  height: 3px;
+
+  background: white;
+}
+
+.nav-divider {
+  height: 28px;
+  width: 1px;
+
+  background: #444;
+}
+
+
+/* =========================================
+   DASHBOARD CONTENT
+========================================= */
+
+.dashboard-main {
+  width: min(724px, calc(100% - 40px));
+
+  margin: 105px auto 70px;
+
+  position: relative;
+  z-index: 2;
+}
+
+.welcome-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 43px;
+}
+
+.welcome-label {
+  margin: 0 0 12px;
+
+  color: #eee;
+
+  font-size: 16px;
+  letter-spacing: 5px;
+}
+
+.welcome-name {
+  margin: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 62px;
+  font-weight: 400;
+
+  line-height: 1.1;
+}
+
+.wave {
+  font-family: Arial, sans-serif;
+
+  font-size: 42px;
+}
+
+.welcome-description {
+  margin: 14px 0 0;
+
+  color: #9d9d9d;
+
+  font-size: 23px;
+}
+
+.large-profile-icon {
+  width: 120px;
+  height: 120px;
+
+  color: #eee;
+
+  flex-shrink: 0;
+}
+
+.large-profile-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+
+/* =========================================
+   USER CARD
+========================================= */
+
+.user-card {
+  width: 100%;
+
+  border: 1px solid #383838;
+
+  border-radius: 22px;
+
+  padding: 25px 42px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.035),
+      rgba(255, 255, 255, 0.008)
+    );
+
+  box-shadow:
+    0 20px 70px rgba(0, 0, 0, 0.25);
+}
+
+.user-row {
+  min-height: 90px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 32px;
+}
+
+.user-row-icon {
+  width: 70px;
+  height: 70px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #f5f5f5;
+
+  background:
+    radial-gradient(
+      circle,
+      #2b2b2b,
+      #202020
+    );
+}
+
+.user-row-icon svg {
+  width: 37px;
+  height: 37px;
+}
+
+.user-row-content {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.user-row-content span {
+  color: #aaa;
+
+  font-size: 17px;
+}
+
+.user-row-content strong {
+  color: white;
+
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.password-dots {
+  letter-spacing: 5px;
+}
+
+.row-divider {
+  width: 100%;
+  height: 1px;
+
+  background: #363636;
+}
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+.logout-button {
+  width: 100%;
+
+  margin-top: 34px;
+
+  height: 64px;
+
+  border: 2px solid #eee;
+
+  border-radius: 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 20px;
+
+  background: transparent;
+  color: white;
+
+  font-size: 20px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.logout-button svg {
+  width: 35px;
+  height: 35px;
+}
+
+.logout-button:hover {
+  background: white;
+  color: black;
+}
+
+
+/* =========================================
+   BACKGROUND SHAPES
+========================================= */
+
+.background-shape {
+  position: absolute;
+
+  pointer-events: none;
+
+  z-index: 0;
+
+  filter: blur(1px);
+}
+
+.shape-one {
+  width: 480px;
+  height: 260px;
+
+  top: -120px;
+  right: -80px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(255,255,255,0.16),
+      rgba(255,255,255,0.02) 60%,
+      transparent 72%
+    );
+
+  transform: rotate(35deg);
+}
+
+.shape-two {
+  width: 550px;
+  height: 280px;
+
+  bottom: -160px;
+  left: -170px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(255,255,255,0.13),
+      rgba(255,255,255,0.02) 60%,
+      transparent 72%
+    );
+
+  transform: rotate(25deg);
+}
+
+
+/* =========================================
+   STARS
+========================================= */
+
+.star {
+  position: absolute;
+
+  color: white;
+
+  z-index: 1;
+
+  font-size: 33px;
+
+  pointer-events: none;
+}
+
+.star-one {
+  left: 15%;
+  top: 53%;
+}
+
+.star-two {
+  right: 11%;
+  top: 46%;
+
+  font-size: 32px;
+}
+
+.star-three {
+  right: 13.5%;
+  top: 41%;
+
+  font-size: 27px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 800px) {
+
+  .navbar {
+    padding: 0 25px;
+  }
+
+  .brand {
+    font-size: 23px;
+  }
+
+  .nav-links {
+    gap: 18px;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+  }
+
+  .dashboard-main {
+    margin-top: 70px;
+  }
+
+  .welcome-section {
+    align-items: flex-start;
+  }
+
+  .welcome-name {
+    font-size: 48px;
+  }
+
+  .welcome-description {
+    font-size: 18px;
+  }
+
+  .large-profile-icon {
+    width: 90px;
+    height: 90px;
+  }
+
+  .user-card {
+    padding: 20px;
+  }
+
+  .user-row {
+    gap: 18px;
+  }
+
+  .user-row-icon {
+    width: 58px;
+    height: 58px;
+  }
+
+  .user-row-content strong {
+    font-size: 19px;
+  }
+}
+
+
+@media (max-width: 550px) {
+
+  .navbar {
+    height: auto;
+
+    padding: 18px 20px;
+
+    flex-direction: column;
+
+    gap: 15px;
+  }
+
+  .nav-links {
+    height: 40px;
+  }
+
+  .nav-links a {
+    height: 40px;
+  }
+
+  .dashboard-main {
+    width: calc(100% - 30px);
+
+    margin-top: 50px;
+  }
+
+  .welcome-section {
+    flex-direction: column;
+
+    gap: 25px;
+  }
+
+  .welcome-name {
+    font-size: 42px;
+  }
+
+  .welcome-label {
+    font-size: 12px;
+    letter-spacing: 3px;
+  }
+
+  .large-profile-icon {
+    align-self: flex-start;
+  }
+
+  .user-row {
+    min-height: 80px;
+  }
+
+  .user-row-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .user-row-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .user-row-content span {
+    font-size: 14px;
+  }
+
+  .user-row-content strong {
+    font-size: 16px;
+  }
+
+  .auth-card {
+    padding: 30px 22px;
+  }
+}
+/* =========================================
+   FOODPLATER / ABOUT PAGE
+========================================= */
+
+.food-page {
+  min-height: 100vh;
+
+  position: relative;
+
+  overflow-x: hidden;
+
+  background:
+    radial-gradient(
+      circle at 55% 20%,
+      rgba(255, 255, 255, 0.035),
+      transparent 35%
+    ),
+    #080909;
+
+  color: #ffffff;
+}
+
+
+/* =========================================
+   FOOD NAVBAR
+========================================= */
+
+.food-navbar {
+  height: 81px;
+
+  padding: 0 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-bottom: 1px solid #292929;
+
+  background: rgba(8, 9, 9, 0.95);
+
+  position: relative;
+  z-index: 10;
+}
+
+
+.food-brand {
+  display: flex;
+  align-items: center;
+
+  gap: 17px;
+
+  color: white;
+
+  font-size: 25px;
+  font-weight: 600;
+}
+
+
+.food-brand-icon {
+  width: 43px;
+  height: 43px;
+
+  position: relative;
+}
+
+
+.food-brand-icon span {
+  position: absolute;
+
+  display: block;
+
+  width: 16px;
+  height: 31px;
+
+  border: 2px solid white;
+
+  border-radius: 100% 0 100% 0;
+
+  transform: rotate(-35deg);
+}
+
+
+.food-brand-icon span:first-child {
+  left: 7px;
+  top: 9px;
+}
+
+
+.food-brand-icon span:last-child {
+  left: 21px;
+  top: 3px;
+
+  transform: rotate(20deg);
+}
+
+
+/* =========================================
+   FOOD NAV LINKS
+========================================= */
+
+.food-nav-links {
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 28px;
+}
+
+
+.food-nav-links a {
+  height: 100%;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  color: #eeeeee;
+
+  font-size: 16px;
+
+  transition: color 0.2s ease;
+}
+
+
+.food-nav-links a:hover {
+  color: white;
+}
+
+
+.food-nav-links a.active::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 3px;
+
+  background: white;
+}
+
+
+.food-nav-divider {
+  width: 1px;
+  height: 27px;
+
+  background: #444;
+}
+
+
+/* =========================================
+   ABOUT MAIN
+========================================= */
+
+.about-main {
+  width: min(1170px, calc(100% - 80px));
+
+  margin: 0 auto;
+
+  padding: 65px 0 90px;
+}
+
+
+/* =========================================
+   ABOUT HEADING
+========================================= */
+
+.about-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 
   margin-bottom: 35px;
 }
 
 
-/* Dashboard Heading */
+.about-eyebrow {
+  margin: 0 0 13px;
 
-.dashboard-header h1 {
-  margin: 0;
+  color: #aaa;
 
-  color: #ffffff;
+  font-size: 12px;
 
-  font-size: 32px;
-
-  font-weight: 600;
+  letter-spacing: 5px;
 }
 
 
-/* Dashboard Subtitle */
+.about-heading h1 {
+  margin: 0;
 
-.dashboard-header p {
-  margin: 8px 0 0;
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
 
-  color: #888888;
+  font-size: clamp(48px, 6vw, 72px);
+
+  font-weight: 400;
+
+  line-height: 1.02;
+}
+
+
+.about-heading h1 span {
+  font-family: Arial, sans-serif;
+
+  font-size: 55px;
+
+  margin-left: 5px;
+}
+
+
+.about-description {
+  max-width: 650px;
+
+  margin: 18px 0 0;
+
+  color: #aaa;
+
+  font-size: 20px;
+
+  line-height: 1.6;
+}
+
+
+.about-heart {
+  color: #eeeeee;
+
+  font-family: Georgia, serif;
+
+  font-size: 80px;
+
+  line-height: 1;
+
+  margin-top: 5px;
+}
+
+
+/* =========================================
+   INTRO
+========================================= */
+
+.about-intro {
+  min-height: 210px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 38px 45px;
+
+  margin-bottom: 65px;
+
+  border: 1px solid #343434;
+
+  border-radius: 24px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.01)
+    );
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.2);
+}
+
+
+.about-intro-content {
+  max-width: 720px;
+}
+
+
+.about-small-title {
+  margin: 0 0 10px;
+
+  color: #999;
+
+  font-size: 11px;
+
+  letter-spacing: 4px;
+}
+
+
+.about-intro h2 {
+  margin: 0 0 13px;
+
+  font-family: Georgia, serif;
+
+  font-size: 36px;
+
+  font-weight: 400;
+}
+
+
+.about-intro-content > p:last-child {
+  margin: 0;
+
+  color: #999;
+
+  font-size: 16px;
+
+  line-height: 1.7;
+}
+
+
+.about-intro-symbol {
+  font-family: Georgia, serif;
+
+  font-size: 110px;
+
+  color: #e8e8e8;
+
+  line-height: 1;
+}
+
+
+/* =========================================
+   FOOD SECTION
+========================================= */
+
+.about-food-section {
+  margin-bottom: 65px;
+}
+
+
+.about-section-heading {
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: space-between;
+
+  margin-bottom: 27px;
+}
+
+
+.about-section-heading p {
+  margin: 0 0 7px;
+
+  color: #888;
+
+  font-size: 11px;
+
+  letter-spacing: 4px;
+}
+
+
+.about-section-heading h2 {
+  margin: 0;
+
+  font-family: Georgia, serif;
+
+  font-size: 38px;
+
+  font-weight: 400;
+}
+
+
+.about-section-heading > span {
+  color: #888;
 
   font-size: 14px;
 }
 
 
-/* Profile Circle */
+/* =========================================
+   FOOD CARDS
+========================================= */
 
-.profile-circle {
-  width: 52px;
-  height: 52px;
+.food-card-grid {
+  display: grid;
 
-  border-radius: 50%;
+  grid-template-columns:
+    repeat(3, 1fr);
 
-  background: #ffffff;
+  gap: 27px;
+}
 
-  color: #000000;
+
+.food-card {
+  min-width: 0;
+
+  overflow: hidden;
+
+  border: 1px solid #393939;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #151617,
+      #0e0f10
+    );
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+.food-card:hover {
+  transform: translateY(-5px);
+
+  border-color: #666;
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+
+.food-card-image {
+  width: 100%;
+
+  height: 240px;
+
+  overflow: hidden;
+
+  background: #171818;
+}
+
+
+.food-card-image img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.4s ease;
+}
+
+
+.food-card:hover
+.food-card-image img {
+  transform: scale(1.04);
+}
+
+
+.food-card-content {
+  min-height: 135px;
+
+  padding: 21px 23px;
 
   display: flex;
+
   align-items: center;
-  justify-content: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+}
+
+
+.food-card-content h3 {
+  margin: 0 0 10px;
 
   font-size: 20px;
 
@@ -265,190 +1268,305 @@
 }
 
 
-/* =========================================================
-   USER DETAILS
-   ========================================================= */
+.food-card-content p {
+  max-width: 230px;
 
-.details-container {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 16px;
-}
-
-
-/* Individual Detail Box */
-
-.detail-box {
-  background: rgba(255, 255, 255, 0.05);
-
-  border: 1px solid rgba(255, 255, 255, 0.08);
-
-  border-radius: 16px;
-
-  padding: 20px 22px;
-
-  transition: 0.2s ease;
-}
-
-
-/* Detail Box Hover */
-
-.detail-box:hover {
-  background: rgba(255, 255, 255, 0.08);
-
-  border-color: rgba(255, 255, 255, 0.15);
-}
-
-
-/* Detail Label */
-
-.detail-box span {
-  display: block;
-
-  color: #888888;
-
-  font-size: 13px;
-
-  margin-bottom: 8px;
-}
-
-
-/* Detail Value */
-
-.detail-box h2 {
   margin: 0;
 
-  color: #ffffff;
-
-  font-size: 17px;
-
-  font-weight: 500;
-
-  word-break: break-word;
-}
-
-
-/* =========================================================
-   LOGOUT BUTTON
-   ========================================================= */
-
-.logout-button {
-  width: 100%;
-
-  margin-top: 30px;
-
-  padding: 15px;
-
-  border: none;
-
-  border-radius: 12px;
-
-  background: #ffffff;
-
-  color: #000000;
+  color: #b5b5b5;
 
   font-size: 15px;
 
-  font-weight: 600;
+  line-height: 1.55;
+}
+
+
+.food-arrow {
+  flex-shrink: 0;
+
+  width: 45px;
+  height: 45px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: #292a2b;
+
+  color: white;
+
+  font-size: 25px;
 
   cursor: pointer;
 
-  transition: 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
 
-/* Logout Hover */
+.food-arrow:hover {
+  background: #3b3c3d;
 
-.logout-button:hover {
-  background: #dddddd;
+  transform: translateX(3px);
 }
 
 
-/* Logout Click */
+/* =========================================
+   BOTTOM SECTION
+========================================= */
 
-.logout-button:active {
-  transform: scale(0.99);
+.about-bottom {
+  min-height: 230px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 40px 55px;
+
+  border: 1px solid #343434;
+
+  border-radius: 24px;
+
+  background:
+    radial-gradient(
+      circle at 80% 50%,
+      rgba(255,255,255,0.06),
+      transparent 35%
+    ),
+    #101111;
 }
 
 
-/* =========================================================
-   DASHBOARD MOBILE
-   ========================================================= */
+.about-bottom p {
+  margin: 0 0 8px;
 
-@media (max-width: 600px) {
+  color: #888;
 
-  /* Login / Signup */
+  font-size: 11px;
 
-  .auth-container {
-    padding: 20px;
+  letter-spacing: 4px;
+}
+
+
+.about-bottom h2 {
+  margin: 0 0 10px;
+
+  font-family: Georgia, serif;
+
+  font-size: 40px;
+
+  font-weight: 400;
+}
+
+
+.about-bottom span {
+  color: #999;
+
+  font-size: 16px;
+}
+
+
+.about-bottom-decoration {
+  position: absolute;
+
+  top: -20px;
+  right: 150px;
+
+  color: #444;
+
+  font-size: 70px;
+}
+
+
+.about-bottom-heart {
+  font-family: Georgia, serif;
+
+  font-size: 100px;
+
+  color: #e8e8e8;
+}
+
+
+/* =========================================
+   ABOUT RESPONSIVE
+========================================= */
+
+@media (max-width: 1000px) {
+
+  .about-main {
+    width: min(90%, 800px);
   }
 
-  .auth-box {
-    padding: 40px 25px;
+  .food-card-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
   }
 
-  .auth-box h1 {
-    font-size: 36px;
+}
+
+
+@media (max-width: 700px) {
+
+  .food-navbar {
+    height: auto;
+
+    padding: 17px 20px;
+
+    flex-direction: column;
+
+    gap: 12px;
   }
 
-  .auth-box > p {
-    font-size: 19px;
+
+  .food-nav-links {
+    height: 38px;
+
+    gap: 16px;
   }
 
-  .auth-box input,
-  .auth-box button[type="submit"] {
-    height: 55px;
 
+  .food-nav-links a {
+    height: 38px;
+
+    font-size: 14px;
+  }
+
+
+  .food-nav-divider {
+    height: 20px;
+  }
+
+
+  .about-main {
+    width: calc(100% - 30px);
+
+    padding-top: 45px;
+  }
+
+
+  .about-heading {
+    flex-direction: column;
+
+    gap: 20px;
+  }
+
+
+  .about-heading h1 {
+    font-size: 47px;
+  }
+
+
+  .about-heart {
+    display: none;
+  }
+
+
+  .about-intro {
+    padding: 30px;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 20px;
+  }
+
+
+  .about-intro h2 {
+    font-size: 30px;
+  }
+
+
+  .about-intro-symbol {
+    display: none;
+  }
+
+
+  .about-section-heading {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 10px;
+  }
+
+
+  .about-section-heading h2 {
+    font-size: 32px;
+  }
+
+
+  .food-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .food-card-image {
+    height: 260px;
+  }
+
+
+  .about-bottom {
+    padding: 35px;
+
+    min-height: 200px;
+  }
+
+
+  .about-bottom h2 {
+    font-size: 30px;
+  }
+
+
+  .about-bottom-heart {
+    display: none;
+  }
+
+}
+
+
+@media (max-width: 450px) {
+
+  .food-brand {
+    font-size: 21px;
+  }
+
+
+  .food-nav-links {
+    gap: 10px;
+  }
+
+
+  .food-nav-links a {
+    font-size: 12px;
+  }
+
+
+  .about-heading h1 {
+    font-size: 40px;
+  }
+
+
+  .about-description {
     font-size: 17px;
   }
 
-  .auth-box .switch-text {
-    font-size: 17px;
+
+  .food-card-image {
+    height: 220px;
   }
 
-  .auth-box .link-button {
-    font-size: 17px;
-  }
-
-
-  /* Dashboard */
-
-  .dashboard-page {
-    padding: 20px 15px;
-  }
-
-  .dashboard-card {
-    padding: 25px 20px;
-
-    border-radius: 20px;
-  }
-
-  .dashboard-header h1 {
-    font-size: 25px;
-  }
-
-  .dashboard-header {
-    margin-bottom: 25px;
-  }
-
-  .profile-circle {
-    width: 45px;
-    height: 45px;
-
-    font-size: 17px;
-  }
-
-  .detail-box {
-    padding: 17px;
-  }
-
-  .detail-box h2 {
-    font-size: 15px;
-  }
-
-  .logout-button {
-    padding: 14px;
-  }
 }

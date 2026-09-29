@@ -1,79 +1,188 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+    email: "",
+    password: ""
+  });
 
-  const handleLogin = (e) => {
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  // ------------------------------------
+  // Handle input
+  // ------------------------------------
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+
+    setError("");
+  };
+
+  // ------------------------------------
+  // Login
+  // ------------------------------------
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email || !password) {
-      alert("Please enter email and password.");
+    setError("");
+
+    if (!formData.email || !formData.password) {
+      setError("Please enter your email and password.");
       return;
     }
 
-    const savedUser = localStorage.getItem("user");
+    try {
+      setLoading(true);
 
-    if (!savedUser) {
-      alert("No account found. Please create an account first.");
-      return;
-    }
+      const response = await fetch(
+        "http://localhost:5000/api/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(formData)
+        }
+      );
 
-    const user = JSON.parse(savedUser);
+      const data = await response.json();
 
-    if (
-      email === user.email &&
-      password === user.password
-    ) {
-      localStorage.setItem("loggedIn", "true");
+      // ------------------------------------
+      // Login successful
+      // ------------------------------------
+      if (response.ok && data.success) {
+        localStorage.setItem(
+          "user",
+          JSON.stringify(data.user)
+        );
 
-      navigate("/dashboard");
-    } else {
-      alert("Invalid email or password.");
+        navigate("/dashboard");
+        return;
+      }
+
+      // ------------------------------------
+      // Login failed
+      // ------------------------------------
+      setError(
+        data.message || "Invalid login details."
+      );
+
+      // Send user to signup after invalid login
+      setTimeout(() => {
+        navigate("/signup", {
+          state: {
+            email: formData.email
+          }
+        });
+      }, 1500);
+
+    } catch (error) {
+      console.error(error);
+
+      setError(
+        "Unable to connect to the server. Make sure the backend is running."
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-box">
-        <h1>Welcome Back</h1>
+    <div className="auth-page">
 
-        <p>Login to your account</p>
+      <div className="auth-card">
 
-        <form onSubmit={handleLogin}>
-          <input
-            type="email"
-            placeholder="Email ID"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+        <div className="auth-logo">
+          <div className="logo-icon">
+            ◇
+          </div>
 
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <span>MyApp</span>
+        </div>
 
-          <button type="submit">
+        <div className="auth-heading">
+          <p className="eyebrow">
+            WELCOME BACK
+          </p>
+
+          <h1>
             Login
-          </button>
-        </form>
+          </h1>
 
-        <p className="switch-text">
-          Don't have an account?{" "}
+          <p>
+            Enter your details to access your account.
+          </p>
+        </div>
+
+        {error && (
+          <div className="error-message">
+            {error}
+          </div>
+        )}
+
+        <form
+          className="auth-form"
+          onSubmit={handleSubmit}
+        >
+
+          <div className="input-group">
+            <label htmlFor="email">
+              Email
+            </label>
+
+            <input
+              id="email"
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="input-group">
+            <label htmlFor="password">
+              Password
+            </label>
+
+            <input
+              id="password"
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+          </div>
 
           <button
-            className="link-button"
-            onClick={() => navigate("/signup")}
+            type="submit"
+            className="primary-button"
+            disabled={loading}
           >
-            Sign Up
+            {loading ? "Logging in..." : "Login"}
           </button>
-        </p>
+
+        </form>
+
+        <div className="auth-footer">
+          <span>
+            Don't have an account?
+          </span>
+
+          <Link to="/signup">
+            Sign Up
+          </Link>
+        </div>
+
       </div>
+
     </div>
   );
 }

@@ -1,23 +1,66 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import Signup from "./components/signup";
 import Login from "./components/login";
+import Signup from "./components/signup";
 import Dashboard from "./components/dashboard";
+import About from "./components/about";
 
 import "./App.css";
 
+// ------------------------------------
+// Protected Route
+// ------------------------------------
+function ProtectedRoute({ children }) {
+  const user = localStorage.getItem("user");
+
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return children;
+}
+
+// ------------------------------------
+// App
+// ------------------------------------
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/signup" />} />
 
-      <Route path="/signup" element={<Signup />} />
+      {/* Default page */}
+      <Route
+        path="/"
+        element={<Navigate to="/login" replace />}
+      />
 
-      <Route path="/login" element={<Login />} />
+      {/* Login */}
+      <Route
+        path="/login"
+        element={<Login />}
+      />
 
-      <Route path="/dashboard" element={<Dashboard />} />
+      {/* Signup */}
+      <Route
+        path="/signup"
+        element={<Signup />}
+      />
 
-      <Route path="*" element={<Navigate to="/signup" />} />
+      {/* Dashboard */}
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Unknown URL */}
+      <Route
+        path="*"
+        element={<Navigate to="/login" replace />}
+      />
+
     </Routes>
   );
 }
