@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function Dashboard({ onLogout }) {
+function Dashboard() {
+  const navigate = useNavigate();
+
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -13,7 +16,8 @@ function Dashboard({ onLogout }) {
 
   const handleLogout = () => {
     localStorage.removeItem("loggedIn");
-    onLogout();
+
+    navigate("/login");
   };
 
   if (!user) {
@@ -55,7 +59,9 @@ function Dashboard({ onLogout }) {
 
           <div className="detail-box">
             <span>Password</span>
-            <h2>{"•".repeat(user.password.length)}</h2>
+            <h2>
+              {"•".repeat(user.password.length)}
+            </h2>
           </div>
 
         </div>

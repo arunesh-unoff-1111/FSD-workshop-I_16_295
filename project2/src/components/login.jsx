@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function Login({ goToSignup, goToDashboard }) {
+function Login() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -21,47 +24,56 @@ function Login({ goToSignup, goToDashboard }) {
 
     const user = JSON.parse(savedUser);
 
-    if (email === user.email && password === user.password) {
+    if (
+      email === user.email &&
+      password === user.password
+    ) {
       localStorage.setItem("loggedIn", "true");
 
-      goToDashboard();
+      navigate("/dashboard");
     } else {
       alert("Invalid email or password.");
     }
   };
 
   return (
-    <div className="auth-box">
-      <h1>Welcome Back</h1>
-      <p>Login to your account</p>
+    <div className="auth-container">
+      <div className="auth-box">
+        <h1>Welcome Back</h1>
 
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Email ID"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <p>Login to your account</p>
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <form onSubmit={handleLogin}>
+          <input
+            type="email"
+            placeholder="Email ID"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-        <button type="submit">Login</button>
-      </form>
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-      <p className="switch-text">
-        Don't have an account?{" "}
-        <button
-          className="link-button"
-          onClick={goToSignup}
-        >
-          Sign Up
-        </button>
-      </p>
+          <button type="submit">
+            Login
+          </button>
+        </form>
+
+        <p className="switch-text">
+          Don't have an account?{" "}
+
+          <button
+            className="link-button"
+            onClick={() => navigate("/signup")}
+          >
+            Sign Up
+          </button>
+        </p>
+      </div>
     </div>
   );
 }

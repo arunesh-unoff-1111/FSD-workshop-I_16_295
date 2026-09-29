@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function Signup({ goToLogin }) {
+function Signup() {
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,61 +23,70 @@ function Signup({ goToLogin }) {
     }
 
     const user = {
-      username: username,
-      email: email,
-      password: password,
+      username,
+      email,
+      password,
     };
 
     localStorage.setItem("user", JSON.stringify(user));
 
     alert("Account created successfully!");
 
-    goToLogin();
+    navigate("/login");
   };
 
   return (
-    <div className="auth-box">
-      <h1>Create Account</h1>
-      <p>Sign up to continue</p>
+    <div className="auth-container">
+      <div className="auth-box">
+        <h1>Create Account</h1>
 
-      <form onSubmit={handleSignup}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
+        <p>Sign up to continue</p>
 
-        <input
-          type="email"
-          placeholder="Email ID"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <form onSubmit={handleSignup}>
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          <input
+            type="email"
+            placeholder="Email ID"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-        <input
-          type="password"
-          placeholder="Confirm Password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-        <button type="submit">Create Account</button>
-      </form>
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
 
-      <p className="switch-text">
-        Already have an account?{" "}
-        <button className="link-button" onClick={goToLogin}>
-          Login
-        </button>
-      </p>
+          <button type="submit">
+            Create Account
+          </button>
+        </form>
+
+        <p className="switch-text">
+          Already have an account?{" "}
+
+          <button
+            className="link-button"
+            onClick={() => navigate("/login")}
+          >
+            Login
+          </button>
+        </p>
+      </div>
     </div>
   );
 }

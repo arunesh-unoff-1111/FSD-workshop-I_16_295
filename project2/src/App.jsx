@@ -1,31 +1,24 @@
-import { useState } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
+
 import Signup from "./components/signup";
 import Login from "./components/login";
 import Dashboard from "./components/dashboard";
+
 import "./App.css";
 
 function App() {
-  const [page, setPage] = useState("signup");
-
   return (
-    <div className="auth-container">
-      {page === "signup" && (
-        <Signup goToLogin={() => setPage("login")} />
-      )}
+    <Routes>
+      <Route path="/" element={<Navigate to="/signup" />} />
 
-      {page === "login" && (
-        <Login
-          goToSignup={() => setPage("signup")}
-          goToDashboard={() => setPage("dashboard")}
-        />
-      )}
+      <Route path="/signup" element={<Signup />} />
 
-      {page === "dashboard" && (
-        <Dashboard
-          onLogout={() => setPage("login")}
-        />
-      )}
-    </div>
+      <Route path="/login" element={<Login />} />
+
+      <Route path="/dashboard" element={<Dashboard />} />
+
+      <Route path="*" element={<Navigate to="/signup" />} />
+    </Routes>
   );
 }
 
