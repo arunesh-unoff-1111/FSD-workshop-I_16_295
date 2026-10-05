@@ -5,6 +5,12 @@
       "username": "Ramu Sharma",
       "email": "ramu@gmail.com",
       "password": "123456"
+    },
+    {
+      "id": 2,
+      "username": "Aryan Poswal ",
+      "email": "aryan@gmail.com",
+      "password": "666666"
     }
   ]
 }
